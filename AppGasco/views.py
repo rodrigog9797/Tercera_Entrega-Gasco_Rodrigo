@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
-    return render(request, "appgasco/index.html")
+    return render(request, "appgasco/padre.html")
 
 def categoria(request):
     return render(request, "appgasco/categoria.html")

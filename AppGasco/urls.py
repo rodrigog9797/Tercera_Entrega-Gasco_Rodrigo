@@ -4,8 +4,8 @@ from AppGasco import views
 
 urlpatterns = [
     #path('', include('AppGasco.urls')),
-    path('inicio/', views.inicio),
-    path('categoria/', views.categoria),
-    path('producto/', views.producto),
-    path('cliente/', views.cliente),
+    path('inicio/', views.inicio, name = "inicio"),
+    path('categoria/', views.categoria, name = "categoria"),
+    path('producto/', views.producto, name = "producto"),
+    path('cliente/', views.cliente, name = "cliente"),
 ]
