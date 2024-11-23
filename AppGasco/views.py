@@ -3,10 +3,27 @@ from AppGasco.models import Categoria
 from django.http import HttpResponse
 # Create your views here.
 
-def categoria(self):
-    categoria = Categoria(nombre = "Celulares", descripcion = "Celulares disponibles")
-    categoria.save()
+def inicio(request):
+    return render(request, "appgasco/index.html")
 
-    vista = f"Categoria : {categoria.nombre}  Descripción: {categoria.descripcion}"
+def categoria(request):
+    return render(request, "appgasco/categoria.html")
 
-    return HttpResponse(vista)
+def producto(request):
+    return render(request, "appgasco/producto.html")
+
+def cliente(request):
+    return render(request, "appgasco/cliente.html")
+
+
+
+
+
+
+# def categoria(self):
+#     categoria = Categoria(nombre = "Celulares", descripcion = "Celulares disponibles")
+#     categoria.save()
+
+#     vista = f"Categoria : {categoria.nombre}  Descripción: {categoria.descripcion}"
+
+#     return HttpResponse(vista)
