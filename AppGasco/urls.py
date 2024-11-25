@@ -8,4 +8,6 @@ urlpatterns = [
     path('categoria/', views.categoria, name = "categoria"),
     path('producto/', views.producto, name = "producto"),
     path('cliente/', views.cliente, name = "cliente"),
+    path('categoriaFormulario/', views.categoriaFormulario, name = "CategoriaFormulario"),
+
 ]
