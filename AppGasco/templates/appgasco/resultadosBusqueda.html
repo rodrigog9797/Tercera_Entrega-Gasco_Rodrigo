@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Categorías</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f4f4f9, #e1e9ff);
+            color: #333;
+            text-align: center; /* Esto asegura que todo el contenido del body esté centrado */
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-top: 30px;
+            color: #007BFF;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Estilo para el contenedor de los resultados */
+        .resultados {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            padding: 0;
+        }
+
+        /* Estilo de cada tarjeta de resultado */
+        .resultado-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efecto hover sobre las tarjetas */
+        .resultado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo del título de la tarjeta */
+        .resultado-card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: #007BFF;
+        }
+
+        /* Descripción de la tarjeta */
+        .resultado-card p {
+            font-size: 1rem;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        /* Estilo para la lista de resultados */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        /* Estilo responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .resultado-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Búsqueda de Categorías</h1>
+    <p>Estamos buscando la categoria: <strong>{{ descripcion_categoria }}</strong></p>
+    
+    <div class="resultados">
+        {% if categoria %}
+            {% for c in categoria %}
+                <div class="resultado-card">
+                    <h3>{{ c.nombre_categoria }}</h3>
+                    <p>{{ c.descripcion_categoria }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron categorías.</p>
+        {% endif %}
+    </div>
+    
+    <hr> <!-- Un separador visual entre búsqueda de categorías y clientes -->
+    
+    <h1>Búsqueda de Clientes</h1>
+    <p>Estamos buscando el cliente: <strong>{{ nombre_cliente }}</strong></p>
+    
+    <div class="resultados">
+        {% if cliente %}
+            {% for c in cliente %}
+                <div class="resultado-card">
+                    <h3>{{ c.nombre_cliente }} {{ c.apellido }}</h3>
+                    <p><strong>Email:</strong> {{ c.email }}</p>
+                    <p><strong>Teléfono:</strong> {{ c.telefono }}</p>
+                    <p><strong>Dirección:</strong> {{ c.direccion }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron clientes.</p>
+        {% endif %}
+    </div>
+    
+    <hr> <!-- Un separador visual entre búsqueda de categorías y clientes -->
+    
+    <h1>Búsqueda de Productos</h1>
+    <p>Estamos buscando el producto: <strong>{{ nombre_producto }}</strong></p>
+
+    <div class="resultados">
+        {% if productos %}
+            {% for producto in productos %}
+                <div class="resultado-card">
+                    <h3>{{ producto.nombre_producto }}</h3>
+                    <p><strong>Descripción:</strong> {{ producto.descripcion_producto }}</p>
+                    <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+                    <p><strong>Stock:</strong> {{ producto.stock }} unidades</p>
+                    <p><strong>Categorías:</strong> {{ producto.categorias }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron productos.</p>
+        {% endif %}
+    </div>
+    
+
+
+</body>
+</html>
+

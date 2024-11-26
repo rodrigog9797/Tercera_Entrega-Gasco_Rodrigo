@@ -11,14 +11,11 @@ class Categoria(models.Model):
 
 class Producto(models.Model):
     nombre_producto = models.CharField(max_length=200)
-    descripcion_producto = models.TextField()
+    descripcion_producto = models.CharField(max_length=500)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField()
-    categorias = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="products")
-    imagen = models.ImageField(upload_to='imagen_producto/', blank=True, null=True)
+    stock = models.PositiveIntegerField() # Me permite saber cuantos productos tengo en stcok de cada uno
+    categorias = models.CharField(max_length=30)
     
-    #def __str__(self):
-        #return self.name
     
 class Cliente(models.Model):
     nombre_cliente = models.CharField(max_length=40)
@@ -27,8 +24,7 @@ class Cliente(models.Model):
     telefono = models.CharField (max_length=20)
     direccion = models.TextField()
 
-    def __str__(self):
-        return (f"{self.nombre} {self.apellido}")
+    
     
 
 
