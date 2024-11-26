@@ -15,14 +15,14 @@ Estos links aún no realizan nada en especifico, simplemente toman como herencia
 Las funcionalidades de la aplicación por el momento son las siguientes:
 
 - Agregar:
-  .Productos
-  .Clientes
-  .Categorias
+.Productos
+.Clientes
+.Categorias
 
 -Buscar:
-  .Productos
-  .Clientes
-  .Categorias
+.Productos
+.Clientes
+.Categorias
 
 A continuación voy a dejar los Productos, Clientes y Categorias agregadas para que puedan utilizar de forma practica la función de "Buscar". En todos estos casos dejare solo el elemento que se requiere para realizar la busqueda.
 
