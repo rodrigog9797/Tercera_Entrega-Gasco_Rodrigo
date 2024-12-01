@@ -23,12 +23,29 @@ urlpatterns = [
 
 ]   
 
-urls_vistas_clases = [
-    path('categoria/lista/', views_clases.CategoriaListView.as_view(), name='List'),
-    path('categoria/detalle/<int:pk>/', views_clases.CategoriaDetalle.as_view(), name='Detail'),
-    path('categoria/nuevo/', views_clases.CategoriaCreateView.as_view(), name='New'),
-    path('categoria/editar/<int:pk>', views_clases.CategoriaUpdateView.as_view(), name='Edit'),
-    path('categoria/eliminar/<int:pk>', views_clases.CategoriaDeleteView.as_view(), name='Delete')
+urls_vistas_clases_categoria = [
+    path('categoria/lista/', views_clases.CategoriaListView.as_view(), name='List_Categoria'),
+    path('categoria/detalle/<int:pk>/', views_clases.CategoriaDetalle.as_view(), name='Detail_Categoria'),
+    path('categoria/nuevo/', views_clases.CategoriaCreateView.as_view(), name='New_Categoria'),
+    path('categoria/editar/<int:pk>', views_clases.CategoriaUpdateView.as_view(), name='Edit_Categoria'),
+    path('categoria/eliminar/<int:pk>', views_clases.CategoriaDeleteView.as_view(), name='Delete_Categoria')
 ]
 
-urlpatterns += urls_vistas_clases
+
+urls_vistas_clases_producto = [
+    path('producto/lista/', views_clases.ProductoListView.as_view(), name='List_Producto'),
+    path('producto/detalle/<int:pk>/', views_clases.ProductoDetalle.as_view(), name='Detail_Producto'),
+    path('producto/nuevo/', views_clases.ProductoCreateView.as_view(), name='New_Producto'),
+    path('producto/editar/<int:pk>', views_clases.ProductoUpdateView.as_view(), name='Edit_Producto'),
+    path('producto/eliminar/<int:pk>', views_clases.ProductoDeleteView.as_view(), name='Delete_Producto')
+]
+
+urls_vistas_clases_cliente = [
+    path('cliente/lista/', views_clases.ClienteListView.as_view(), name='List_Cliente'),
+    path('cliente/detalle/<int:pk>/', views_clases.ClienteDetalle.as_view(), name='Detail_Cliente'),
+    path('cliente/nuevo/', views_clases.ClienteCreateView.as_view(), name='New_Cliente'),
+    path('cliente/editar/<int:pk>', views_clases.ClienteUpdateView.as_view(), name='Edit_Cliente'),
+    path('cliente/eliminar/<int:pk>', views_clases.ClienteDeleteView.as_view(), name='Delete_Cliente')
+]
+
+urlpatterns += urls_vistas_clases_categoria + urls_vistas_clases_producto + urls_vistas_clases_cliente

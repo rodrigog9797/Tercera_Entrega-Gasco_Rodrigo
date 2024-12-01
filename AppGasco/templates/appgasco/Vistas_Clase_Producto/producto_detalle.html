@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Confirmación de Eliminación {% endblock title %}
+{% block title %} Inicio {% endblock title %}
 
 {% block main %}
 <style>
@@ -19,8 +19,8 @@
         margin-top: 20px;
     }
 
-    .delete-confirmation {
-        width: 40%;
+    .producto-details {
+        width: 50%;
         margin: 40px auto;
         padding: 20px;
         background-color: #fff;
@@ -29,28 +29,18 @@
         text-align: center;
     }
 
-    .delete-confirmation p {
+    .producto-details p {
         color: #333;
         font-size: 18px;
         margin-bottom: 20px;
     }
 
-    .delete-confirmation input[type="submit"] {
-        padding: 12px 20px;
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+    .producto-details i {
+        font-style: italic;
+        color: #007bff;
     }
 
-    .delete-confirmation input[type="submit"]:hover {
-        background-color: #c82333;
-    }
-
-    .cancel-button {
+    .back-button {
         display: inline-block;
         margin-top: 20px;
         padding: 10px 15px;
@@ -62,22 +52,21 @@
         transition: background-color 0.3s ease;
     }
 
-    .cancel-button:hover {
+    .back-button:hover {
         background-color: #5a6268;
     }
 </style>
 
-<h1>Confirmación de Eliminación</h1>
+<h1>Detalles del Producto</h1>
 
-<div class="delete-confirmation">
-    <form action="" method="POST">
-        {% csrf_token %}
+<div class="producto-details">
+    <p>Nombre del Producto: <i>{{ producto.nombre_producto }}</i></p>
+    <p>Descripción del producto: <i>{{ producto.descripcion_producto }}</i></p>
+    <p>Precio del producto: <i>{{ producto.precio }}</i></p>
+    <p>Stock del producto: <i>{{ producto.stock }}</i></p>
+    <p>Categorias del producto: <i>{{ producto.categorias }}</i></p>
 
-        <p>¿Estás seguro que deseas eliminar la categoría "{{ object }}"?</p>
-        <input type="submit" value="Borrar">
-    </form>
-
-    <a href="{% url 'List_Categoria' %}" class="cancel-button">Cancelar</a>
+    <a href="{% url 'List_Producto' %}" class="back-button">Regresar</a>
 </div>
 
 {% endblock main %}

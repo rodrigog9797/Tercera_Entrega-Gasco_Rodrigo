@@ -73,11 +73,11 @@
     <form action="" method="POST">
         {% csrf_token %}
 
-        <p>¿Estás seguro que deseas eliminar la categoría "{{ object }}"?</p>
+        <p>¿Estás seguro que deseas eliminar este producto "{{ object }}"?</p>
         <input type="submit" value="Borrar">
     </form>
 
-    <a href="{% url 'List_Categoria' %}" class="cancel-button">Cancelar</a>
+    <a href="{% url 'List_Producto' %}" class="cancel-button">Cancelar</a>
 </div>
 
 {% endblock main %}

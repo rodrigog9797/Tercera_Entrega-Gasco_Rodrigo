@@ -47,6 +47,22 @@
     .form-container input[type="submit"]:hover {
         background-color: #0056b3;
     }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #6c757d;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #5a6268;
+    }
 </style>
 
 <h1>Formulario</h1>
@@ -58,7 +74,11 @@
         {{ form.as_p }}
 
         <input type="submit" value="Enviar">
+
+        <a href="{% url 'List_Cliente' %}" class="back-button">Regresar</a>
+
     </form>
+    
 </div>
 
 {% endblock main %}

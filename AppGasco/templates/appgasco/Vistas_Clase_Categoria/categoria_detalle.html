@@ -5,12 +5,65 @@
 {% block title %} Inicio {% endblock title %}
 
 {% block main %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 0;
+    }
 
-<p>Nombre de la categoria: <i>{{ categoria.nombre_categoria }}</i></p>
-<p>Descripción de la categoria: <i>{{ categoria.descripcion_categoria }}</i></p>
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-top: 20px;
+    }
 
-<p>
-    <a href="{% url 'List' %}">Regresar</a>
-</p>
+    .categoria-details {
+        width: 50%;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .categoria-details p {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .categoria-details i {
+        font-style: italic;
+        color: #007bff;
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #6c757d;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+<h1>Detalles de la Categoría</h1>
+
+<div class="categoria-details">
+    <p>Nombre de la categoría: <i>{{ categoria.nombre_categoria }}</i></p>
+    <p>Descripción de la categoría: <i>{{ categoria.descripcion_categoria }}</i></p>
+
+    <a href="{% url 'List_Categoria' %}" class="back-button">Regresar</a>
+</div>
 
 {% endblock main %}

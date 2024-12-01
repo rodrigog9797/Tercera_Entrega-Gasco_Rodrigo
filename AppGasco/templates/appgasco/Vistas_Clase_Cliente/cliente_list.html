@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Lista de Categorías {% endblock title %}
+{% block title %} Lista de Clientes {% endblock title %}
 
 {% block main %}
 <style>
@@ -19,7 +19,7 @@
         margin-top: 20px;
     }
 
-    .category-list {
+    .cliente-list {
         width: 80%;
         margin: 20px auto;
         padding: 20px;
@@ -28,12 +28,12 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .category-list ul {
+    .cliente-list ul {
         list-style: none;
         padding: 0;
     }
 
-    .category-list li {
+    .cliente-list li {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -45,16 +45,16 @@
         transition: background-color 0.3s ease;
     }
 
-    .category-list li:hover {
+    .cliente-list li:hover {
         background-color: #f1f1f1;
     }
 
-    .category-list p {
+    .cliente-list p {
         margin: 0;
         color: #555;
     }
 
-    .category-list .actions a {
+    .cliente-list .actions a {
         text-decoration: none;
         padding: 8px 12px;
         margin-right: 5px;
@@ -64,27 +64,27 @@
         transition: background-color 0.3s ease;
     }
 
-    .category-list .actions .btn-view {
+    .cliente-list .actions .btn-view {
         background-color: #007bff;
     }
 
-    .category-list .actions .btn-view:hover {
+    .cliente-list .actions .btn-view:hover {
         background-color: #0056b3;
     }
 
-    .category-list .actions .btn-edit {
+    .cliente-list .actions .btn-edit {
         background-color: #ffc107;
     }
 
-    .category-list .actions .btn-edit:hover {
+    .cliente-list .actions .btn-edit:hover {
         background-color: #e0a800;
     }
 
-    .category-list .actions .btn-delete {
+    .cliente-list .actions .btn-delete {
         background-color: #dc3545;
     }
 
-    .category-list .actions .btn-delete:hover {
+    .cliente-list .actions .btn-delete:hover {
         background-color: #c82333;
     }
 
@@ -96,24 +96,24 @@
     }
 </style>
 
-<h1>Categorías</h1>
+<h1>Clientes</h1>
 
-<div class="category-list">
+<div class="cliente-list">
     {% if object_list %}
         <ul>
-            {% for categoria in object_list %}
+            {% for cliente in object_list %}
                 <li>
-                    <p><strong>Nombre:</strong> {{ categoria.nombre_categoria }}</p>
+                    <p><strong>Nombre:</strong> {{ cliente.nombre_cliente }}</p>
                     <div class="actions">
-                        <a href="{% url 'Detail_Categoria' categoria.pk %}" class="btn-view">Ver</a>
-                        <a href="{% url 'Edit_Categoria' categoria.pk %}" class="btn-edit">Editar</a>
-                        <a href="{% url 'Delete_Categoria' categoria.pk %}" class="btn-delete">Borrar</a>
+                        <a href="{% url 'Detail_Cliente' cliente.pk %}" class="btn-view">Ver</a>
+                        <a href="{% url 'Edit_Cliente' cliente.pk %}" class="btn-edit">Editar</a>
+                        <a href="{% url 'Delete_Cliente' cliente.pk %}" class="btn-delete">Borrar</a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p class="empty-message">No hay categorías disponibles.</p>
+        <p class="empty-message">No hay clientes disponibles.</p>
     {% endif %}
     <style>
         .actions-global {
@@ -138,7 +138,7 @@
     </style>
     
     <div class="actions-global">
-        <a href="{% url 'New_Categoria' %}" class="btn-new">Agregar Nueva Categoría</a>
+        <a href="{% url 'New_Cliente' %}" class="btn-new">Agregar Nuevo Cliente</a>
     </div>
     
 
