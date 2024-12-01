@@ -3,17 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categorías | Tienda de Tecnología Gasco</title>
 </head>
 <body>
     {% extends "AppGasco/index.html" %}
     {% load static %}
-    {% block contenidoQueCambia  %}
-
-    VISTA CATEGORIAS (Aún estoy en proceso)
-    <!--ACA SIEMPRE VA LO QUE CAMBIA DE CADA VISTA, DISTINGUIENDOSE DE LO QUE HEREDA DE SU PADRE -->
     
+    {% block main %}
+    <!-- Cabecera de Categorías -->
+<header class="bg-dark text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Explora nuestras Categorías</h1>
+        <p class="lead">Encuentra lo último en tecnología clasificado por categorías.</p>
+    </div>
+</header>
 
-    {% endblock %}
+<!-- Sección de Categorías -->
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5">
+            <!-- Ejemplo de categoría -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/categorias_tecnologia.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Laptops y Computadoras</h5>
+                        <p class="card-text">Descubre nuestra selección de laptops, computadoras de escritorio y más.</p>
+                        <a href="{% url 'List_Categoria' %}" class="btn btn-primary">Explorar categorias</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejemplo de categoría -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/monopatines.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Monopatines eléctricos</h5>
+                        <p class="card-text">Descubre nuestra selección de monopatines eléctricos.</p>
+                        <a href="{% url 'List_Categoria' %}" class="btn btn-primary">Explorar categorias</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejemplo de categoría -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/teclados_mouses.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mouses y teclados</h5>
+                        <p class="card-text">Descubre nuestra selección mouses y teclados.</p>
+                        <a href="{% url 'List_Categoria' %}" class="btn btn-primary">Explorar categorias</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    {% endblock main %}
 </body>
 </html>

@@ -140,5 +140,30 @@
     <div class="actions-global">
         <a href="{% url 'New_Producto' %}" class="btn-new">Agregar Nuevo Producto</a>
     </div>
+    <style>
+        .actions-global {
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            margin-top: 20px;
+        }
+    
+        .actions-global .btn-new {
+            padding: 12px 20px;
+            background-color: #007bff; /* Color azul para el fondo */
+            color: #fff; /* Texto en blanco */
+            text-decoration: none; /* Elimina subrayado */
+            border-radius: 5px; /* Bordes redondeados */
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
+        }
+    
+        .actions-global .btn-new:hover {
+            background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+        }
+    </style>
+    
+    <div class="actions-global">
+        <a href="{% url 'Busqueda_NombreProducto' %}" class="btn-new">Buscar producto por nombre</a>
+    </div>
 
 {% endblock main %}
