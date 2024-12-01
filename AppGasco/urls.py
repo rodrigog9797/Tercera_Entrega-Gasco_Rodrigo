@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-from AppGasco import views
+from AppGasco import views, views_clases
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
-    path('inicio/', views.inicio, name = "inicio"),
+    path('', views.inicio, name = "inicio"),
     path('categoria/', views.categoria, name = "categoria"),
     path('producto/', views.producto, name = "producto"),
     path('cliente/', views.cliente, name = "cliente"),
@@ -19,15 +21,14 @@ urlpatterns = [
 
     
 
-
-
-
-
-
-
-
-
-
-
-
 ]   
+
+urls_vistas_clases = [
+    path('clases/lista/', views_clases.CategoriaListView.as_view(), name='List'),
+    path('clases/detalle/<int:pk>/', views_clases.CategoriaDetalle.as_view(), name='Detail'),
+    path('clases/nuevo/', views_clases.CategoriaCreateView.as_view(), name='New'),
+    path('clases/editar/<int:pk>', views_clases.CategoriaUpdateView.as_view(), name='Edit'),
+    path('clases/eliminar/<int:pk>', views_clases.CategoriaDeleteView.as_view(), name='Delete')
+]
+
+urlpatterns += urls_vistas_clases

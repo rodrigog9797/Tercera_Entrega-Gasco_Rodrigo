@@ -45,9 +45,7 @@ def buscar_categoria(request):
         respuesta = "No enviaste ningún dato"
     
     return HttpResponse(respuesta)
-
-
-    
+  
 
 def clienteFormulario(request):
     if request.method == "POST":  # Si el formulario fue enviado
@@ -108,3 +106,4 @@ def buscar_producto(request):
         respuesta = "No enviaste ningún dato"
     
     return HttpResponse(respuesta)
+
