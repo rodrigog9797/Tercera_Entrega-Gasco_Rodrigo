@@ -24,11 +24,11 @@ urlpatterns = [
 ]   
 
 urls_vistas_clases = [
-    path('clases/lista/', views_clases.CategoriaListView.as_view(), name='List'),
-    path('clases/detalle/<int:pk>/', views_clases.CategoriaDetalle.as_view(), name='Detail'),
-    path('clases/nuevo/', views_clases.CategoriaCreateView.as_view(), name='New'),
-    path('clases/editar/<int:pk>', views_clases.CategoriaUpdateView.as_view(), name='Edit'),
-    path('clases/eliminar/<int:pk>', views_clases.CategoriaDeleteView.as_view(), name='Delete')
+    path('categoria/lista/', views_clases.CategoriaListView.as_view(), name='List'),
+    path('categoria/detalle/<int:pk>/', views_clases.CategoriaDetalle.as_view(), name='Detail'),
+    path('categoria/nuevo/', views_clases.CategoriaCreateView.as_view(), name='New'),
+    path('categoria/editar/<int:pk>', views_clases.CategoriaUpdateView.as_view(), name='Edit'),
+    path('categoria/eliminar/<int:pk>', views_clases.CategoriaDeleteView.as_view(), name='Delete')
 ]
 
 urlpatterns += urls_vistas_clases
