@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from AppGasco.models import Categoria , Cliente , Producto
 from django.http import HttpResponse
-from AppGasco.forms import CategoriaFormulario , ClienteFormulario , ProductoFormulario
+from AppGasco.forms import CategoriaFormulario , ClienteFormulario , ProductoFormulario, UserRegisterForm
 # Create your views here.
 
 def inicio(request):
@@ -106,4 +106,23 @@ def buscar_producto(request):
         respuesta = "No enviaste ningún dato"
     
     return HttpResponse(respuesta)
+
+# Vista de registro
+def register(request):
+
+    if request.method == 'POST':
+
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                username = form.cleaned_data['username']
+                form.save()
+                return render(request,"AppGasco/index.html" ,  {"mensaje":"Usuario Creado :)"})
+
+    else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+
+    return render(request,"AppGasco/registro.html" ,  {"form":form})
 

@@ -3,16 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productos | Tienda de Tecnología Gasco</title>
 </head>
+<style>
+    /* Estilo para imágenes */
+.card-img-top {
+    height: 200px; /* Ajusta según tus necesidades */
+    object-fit: cover; /* Evita distorsión */
+    width: 100%; /* Asegura que ocupen todo el ancho */
+}
+
+/* Normalizar altura de las tarjetas */
+.card-body {
+    min-height: 150px; /* Ajusta para alinear los textos */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Uniformidad en los títulos y textos */
+.card-title {
+    font-size: 1.25rem; /* Tamaño uniforme */
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+</style>
 <body>
     {% extends "AppGasco/index.html" %}
     {% load static %}
-    {% block main  %}
-
-    VISTA PRODUCTOS (Aún estoy en proceso)
-    <!--ACA SIEMPRE VA LO QUE CAMBIA DE CADA VISTA, DISTINGUIENDOSE DE LO QUE HEREDA DE SU PADRE -->
     
+    {% block main %}
+    <!-- Cabecera de Productos -->
+<header class="bg-dark text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Explora nuestros Productos</h1>
+        <p class="lead">Productos disponibles en la WEB.</p>
+    </div>
+</header>
+
+<!-- Sección de Productos -->
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-4 gx-lg-5">
+            <!-- Ejemplo de producto -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/galaxy_s24_ultra.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Alguno de nuestros productos</h5>
+                        <p class="card-text">Alguno de los productos que tenemos en stock.</p>
+                        <a href="{% url 'List_Producto' %}" class="btn btn-primary">Explorar productos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejemplo de producto -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/aula_f75.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Alguno de nuestros productos</h5>
+                        <p class="card-text">Alguno de los productos que tenemos en stock.</p>
+                        <a href="{% url 'List_Producto' %}" class="btn btn-primary">Explorar productos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ejemplo de producto -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{% static 'appgasco/assets/img/asus_tuf_gaming.jpg' %}" class="card-img-top" alt="Categorías de Tecnología">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Alguno de nuestros productos</h5>
+                        <p class="card-text">Alguno de los productos que tenemos en stock.</p>
+                        <a href="{% url 'List_Producto' %}" class="btn btn-primary">Explorar productos</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
 
     {% endblock main %}
 </body>

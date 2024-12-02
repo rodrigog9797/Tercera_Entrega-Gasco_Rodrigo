@@ -16,29 +16,106 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="{%  static 'appgasco/css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'inicio' %}">Tecnologias Gasco</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'categoria' %}">Categoría</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'producto' %}">Producto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'cliente' %}">Cliente</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'List_Categoria' %}">Ver Categorias</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'List_Producto' %}">Ver Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'List_Cliente' %}">Ver Clientes</a></li>
-                    </ul>
+        <head>
+            <style>
+                /* Asegura que los enlaces tengan un tamaño uniforme */
+                .navbar-nav .nav-item .nav-link {
+                    padding: 10px 15px;
+                    text-align: center;
+                    display: block;
+                    font-size: 1rem;
+                }
+        
+                /* Uniformidad en altura de los elementos */
+                .navbar-nav .nav-item {
+                    margin: 0;
+                }
+        
+                /* Espaciado entre los botones */
+                .navbar-nav {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center; /* Alinea verticalmente los elementos */
+                }
+        
+                /* Para ajustar el contenedor del menú desplegable */
+                .navbar-collapse {
+                    justify-content: flex-end;
+                }
+        
+                /* Botón de cierre de sesión */
+                .navbar-nav .nav-item form {
+                    margin: 0;
+                    padding: 0;
+                }
+        
+                .navbar-nav .nav-item form button {
+                    background: none;
+                    border: none;
+                    color: #007bff;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    text-decoration: none;
+                    padding: 10px 15px;
+                }
+        
+                .navbar-nav .nav-item form button:hover {
+                    color: #0056b3;
+                }
+        
+                /* Estilo para el mensaje de bienvenida */
+                .navbar-nav .welcome-message {
+                    color: #FFD700; /* Amarillo oscuro */
+                    font-size: 1rem;
+                    text-decoration: underline;
+                    line-height: 1.5; /* Alineación vertical uniforme */
+                    display: flex;
+                    align-items: center; /* Centrado vertical */
+                }
+            </style>
+        </head>
+        <body id="page-top">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+                <div class="container px-4 px-lg-5">
+                    <a class="navbar-brand" href="{% url 'inicio' %}">Tecnologias Gasco</a>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'categoria' %}">Categoría</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'producto' %}">Producto</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'List_Categoria' %}">Ver Categorias</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'List_Producto' %}">Ver Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'List_Cliente' %}">Ver Clientes</a></li>
+                            
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <!-- Mensaje de bienvenida -->
+                                    <span class="welcome-message">Bienvenido, {{ user.username }}!</span>
+                                </li>
+                                <li class="nav-item">
+                                    <!-- Botón de cierre de sesión -->
+                                    <form action="{% url 'Logout' %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="nav-link">Cerrar Sesión</button>
+                                    </form>
+                                </li>
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Iniciar Sesión</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Registrarse</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </body>
+        
+        
+        
         
         
         <!-- Masthead-->
