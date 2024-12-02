@@ -50,6 +50,7 @@ class CategoriaDetalle(LoginRequiredMixin,DetailView):
     """
     model = Categoria
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_detalle.html"
+    login_url = reverse_lazy('Login')
 
 class CategoriaCreateView(LoginRequiredMixin,CreateView):
     """
@@ -59,6 +60,7 @@ class CategoriaCreateView(LoginRequiredMixin,CreateView):
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_form.html"
     success_url = reverse_lazy("List_Categoria")  # URL de redirección después de crear un curso
     fields = ["nombre_categoria", "descripcion_categoria"]  # Campos del modelo a mostrar en el formulario
+    login_url = reverse_lazy('Login')
 
 class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
     """
@@ -68,6 +70,7 @@ class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_edit.html"
     success_url = reverse_lazy("List_Categoria")
     fields = ["nombre_categoria", "descripcion_categoria"]
+    login_url = reverse_lazy('Login')
 
 class CategoriaDeleteView(LoginRequiredMixin,DeleteView):
     """
@@ -76,6 +79,7 @@ class CategoriaDeleteView(LoginRequiredMixin,DeleteView):
     model = Categoria
     success_url = reverse_lazy("List_Categoria")  # URL de redirección después de eliminar un curso
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_confirm_delete.html"  # Plantilla para confirmar la eliminación
+    login_url = reverse_lazy('Login')
 
 class ProductoListView(ListView):
     """
@@ -90,6 +94,7 @@ class ProductoDetalle(LoginRequiredMixin,DetailView):
     """
     model = Producto
     template_name = "appgasco/Vistas_Clase_Producto/producto_detalle.html"
+    login_url = reverse_lazy('Login')
 
 class ProductoCreateView(LoginRequiredMixin,CreateView):
     """
@@ -99,6 +104,7 @@ class ProductoCreateView(LoginRequiredMixin,CreateView):
     template_name = "appgasco/Vistas_Clase_Producto/producto_form.html"
     success_url = reverse_lazy("List_Producto")  # URL de redirección después de crear un curso
     fields = ["nombre_producto", "descripcion_producto", "precio", "stock", "categorias"]  # Campos del modelo a mostrar en el formulario
+    login_url = reverse_lazy('Login')
 
 class ProductoUpdateView(LoginRequiredMixin,UpdateView):
     """
@@ -108,6 +114,7 @@ class ProductoUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "appgasco/Vistas_Clase_Producto/producto_edit.html"
     success_url = reverse_lazy("List_Producto")
     fields = ["nombre_producto", "descripcion_producto", "precio", "stock", "categorias"]
+    login_url = reverse_lazy('Login')
 
 class ProductoDeleteView(LoginRequiredMixin,DeleteView):
     """
@@ -116,13 +123,15 @@ class ProductoDeleteView(LoginRequiredMixin,DeleteView):
     model = Producto
     success_url = reverse_lazy("List_Producto")  # URL de redirección después de eliminar un curso
     template_name = "appgasco/Vistas_Clase_Producto/producto_confirm_delete.html"  # Plantilla para confirmar la eliminación
+    login_url = reverse_lazy('Login')
 
-class ClienteListView(ListView):
+class ClienteListView(LoginRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los clientes.
     """
     model = Cliente  # Modelo con el que trabaja esta vista
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_list.html"  # Plantilla para renderizar la lista
+    login_url = reverse_lazy('Login')
 
 class ClienteDetalle(LoginRequiredMixin,DetailView):
     """
@@ -130,6 +139,7 @@ class ClienteDetalle(LoginRequiredMixin,DetailView):
     """
     model = Cliente
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_detalle.html"
+    login_url = reverse_lazy('Login')
 
 class ClienteCreateView(LoginRequiredMixin,CreateView):
     """
@@ -139,6 +149,7 @@ class ClienteCreateView(LoginRequiredMixin,CreateView):
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_form.html"
     success_url = reverse_lazy("List_Cliente")  # URL de redirección después de crear un curso
     fields = ["nombre_cliente", "apellido", "email", "telefono", "direccion"]  # Campos del modelo a mostrar en el formulario
+    login_url = reverse_lazy('Login')
 
 class ClienteUpdateView(LoginRequiredMixin,UpdateView):
     """
@@ -148,6 +159,7 @@ class ClienteUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_edit.html"
     success_url = reverse_lazy("List_Cliente")
     fields = ["nombre_cliente", "apellido", "email", "telefono", "direccion"]
+    login_url = reverse_lazy('Login')
 
 class ClienteDeleteView(LoginRequiredMixin,DeleteView):
     """
@@ -156,3 +168,4 @@ class ClienteDeleteView(LoginRequiredMixin,DeleteView):
     model = Cliente
     success_url = reverse_lazy("List_Cliente")  # URL de redirección después de eliminar un curso
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_confirm_delete.html"  # Plantilla para confirmar la eliminación
+    login_url = reverse_lazy('Login')
