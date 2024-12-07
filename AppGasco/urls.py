@@ -18,11 +18,6 @@ urlpatterns = [
     path('productoFormulario/', views.productoFormulario, name = "ProductoFormulario"),
     path('busqueda_NombreProducto/', views.busqueda_NombreProducto, name = "Busqueda_NombreProducto"),
     path('AppGasco/buscar_producto/', views.buscar_producto, name="buscar_producto"),
-    path('login/', views_clases.login_request, name="Login"),
-    path('register/', views.register, name='Register'),
-    path('logout/', LogoutView.as_view(template_name='AppGasco/logout.html'), name='Logout'),
-
-    
 
 ]   
 

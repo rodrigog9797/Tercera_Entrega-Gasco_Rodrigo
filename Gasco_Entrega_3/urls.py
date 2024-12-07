@@ -16,12 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from AppGasco.views import categoria
-#from Gasco_Entrega_3.views import saludo, segunda_vista
-##Tengo que importar todas las funciones que haga en views.py para poder usarlas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("AppGasco.urls")),
+    path("", include("Users.urls")),
 
 ]
