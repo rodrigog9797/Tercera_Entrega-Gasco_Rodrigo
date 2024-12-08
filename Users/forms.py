@@ -36,18 +36,18 @@ class UserEditForm(forms.ModelForm):  # Usamos ModelForm en vez de UserChangeFor
     )
 
     # Campos de contraseña (solo si el usuario quiere cambiarlas)
-    new_password1 = forms.CharField(
-        label="Nueva Contraseña",
-        required=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nueva Contraseña'}),
-        validators=[validate_password]
-    )
-    new_password2 = forms.CharField(
-        label="Confirmar Nueva Contraseña",
-        required=False,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmar Nueva Contraseña'}),
-        validators=[validate_password]
-    )
+    # new_password1 = forms.CharField(
+    #     label="Nueva Contraseña",
+    #     required=False,
+    #     widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nueva Contraseña'}),
+    #     validators=[validate_password]
+    # )
+    # new_password2 = forms.CharField(
+    #     label="Confirmar Nueva Contraseña",
+    #     required=False,
+    #     widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmar Nueva Contraseña'}),
+    #     validators=[validate_password]
+    # )
 
     class Meta:
         model = User

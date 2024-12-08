@@ -1,13 +1,11 @@
 {% extends 'AppGasco/index.html' %}
 
-{% load static %}
-
 {% block title %}Editar Perfil{% endblock title %}
 
 {% block main %}
 <head>
     <style>
-        /* Estilos para el contenedor del mensaje */
+        /* Contenedor general para mensajes de éxito */
         .success-container {
             display: flex;
             justify-content: center;
@@ -18,7 +16,7 @@
             text-align: center;
         }
 
-        /* Mensaje de éxito */
+        /* Estilo del mensaje */
         .success-message {
             background: #ffffff;
             padding: 30px 40px;
@@ -57,26 +55,41 @@
     </style>
 </head>
 
-<!-- Mostrar mensajes de éxito solo cuando se haya guardado -->
+<h2>Editar Perfil de {{ user.username }}</h2>
+
+<!-- Mostrar mensajes de éxito -->
 {% if messages %}
     <div class="success-container">
         <div class="success-message">
-            <h1>¡Los cambios han sido guardados exitosamente!</h1>
-            <p>Tu perfil ha sido actualizado.</p>
+            {% for message in messages %}
+                <h1>{{ message }}</h1>
+            {% endfor %}
             <a href="{% url 'inicio' %}" class="btn-home">Volver al Inicio</a>
         </div>
     </div>
 {% endif %}
 
-<h2>Editar Perfil de {{ user.username }}</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="form-container">
+    <!-- Formulario para editar datos del perfil -->
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h3>Editar Información del Perfil</h3>
+        {{ form.as_p }}
+        <input type="hidden" name="form_type" value="profile_form">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
 
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-</form>
-
+    <form method="POST" action="">
+        {% csrf_token %}
+        <h3>Cambiar Contraseña</h3>
+        {{ password_form.old_password.label_tag }}
+        {{ password_form.old_password }}
+        {{ password_form.new_password1.label_tag }}
+        {{ password_form.new_password1 }}
+        {{ password_form.new_password2.label_tag }}
+        {{ password_form.new_password2 }}
+        <button type="submit" class="btn btn-warning">Cambiar Contraseña</button>
+        <input type="hidden" name="form_type" value="password_form">
+    </form>
+</div>
 {% endblock main %}
-
-
-
