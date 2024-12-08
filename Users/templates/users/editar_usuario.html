@@ -5,91 +5,143 @@
 {% block main %}
 <head>
     <style>
-        /* Contenedor general para mensajes de éxito */
-        .success-container {
+        /* Contenedor principal para centrar todo el contenido */
+        .main-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 60vh;
-            background-color: #f8f9fa;
+            min-height: 80vh;
+            background-color: #f0f2f5;
             padding: 20px;
-            text-align: center;
         }
 
-        /* Estilo del mensaje */
-        .success-message {
+        /* Títulos */
+        h2, h3 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        /* Contenedor de formularios */
+        .form-container {
             background: #ffffff;
             padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
             width: 100%;
-        }
-
-        .success-message h1 {
-            font-size: 1.8rem;
-            color: #28a745;
             margin-bottom: 20px;
         }
 
-        .success-message p {
+        /* Botones */
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
             font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .btn-home {
-            display: inline-block;
+            color: #ffffff;
             background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 1rem;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .btn-home:hover {
+        button:hover {
             background-color: #0056b3;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        /* Input fields */
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #495057;
+        }
+
+        /* Mensajes de éxito */
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 
-<h2>Editar Perfil de {{ user.username }}</h2>
+<div class="main-container">
+    <h2>Editar Perfil de {{ user.username }}</h2>
 
-<!-- Mostrar mensajes de éxito -->
-{% if messages %}
-    <div class="success-container">
-        <div class="success-message">
-            {% for message in messages %}
-                <h1>{{ message }}</h1>
-            {% endfor %}
-            <a href="{% url 'inicio' %}" class="btn-home">Volver al Inicio</a>
-        </div>
-    </div>
-{% endif %}
+    <!-- Mostrar mensajes de éxito -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success-message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-<div class="form-container">
     <!-- Formulario para editar datos del perfil -->
-    <form method="POST" action="">
-        {% csrf_token %}
-        <h3>Editar Información del Perfil</h3>
-        {{ form.as_p }}
-        <input type="hidden" name="form_type" value="profile_form">
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    </form>
+    <div class="form-container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h3>Editar Información del Perfil</h3>
+            {{ form.as_p }}
+            <input type="hidden" name="form_type" value="profile_form">
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <h3>Cambiar Contraseña</h3>
-        {{ password_form.old_password.label_tag }}
-        {{ password_form.old_password }}
-        {{ password_form.new_password1.label_tag }}
-        {{ password_form.new_password1 }}
-        {{ password_form.new_password2.label_tag }}
-        {{ password_form.new_password2 }}
-        <button type="submit" class="btn btn-warning">Cambiar Contraseña</button>
-        <input type="hidden" name="form_type" value="password_form">
-    </form>
+    <!-- Formulario para cambiar la contraseña -->
+    <div class="form-container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h3>Cambiar Contraseña</h3>
+            {{ password_form.old_password.label_tag }}
+            {{ password_form.old_password }}
+            {{ password_form.new_password1.label_tag }}
+            {{ password_form.new_password1 }}
+            {{ password_form.new_password2.label_tag }}
+            {{ password_form.new_password2 }}
+            <input type="hidden" name="form_type" value="password_form">
+            <button type="submit" class="btn-warning">Cambiar Contraseña</button>
+        </form>
+    </div>
 </div>
 {% endblock main %}
+
