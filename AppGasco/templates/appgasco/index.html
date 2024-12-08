@@ -98,6 +98,10 @@
                                     <span class="welcome-message">Bienvenido, {{ user.username }}!</span>
                                 </li>
                                 <li class="nav-item">
+                                    <!-- Botón para editar perfil -->
+                                    <a class="nav-link" href="{% url 'EditarPerfil' %}">Editar Perfil</a>
+                                </li>
+                                <li class="nav-item">
                                     <!-- Botón de cierre de sesión -->
                                     <form action="{% url 'Logout' %}" method="POST">
                                         {% csrf_token %}
