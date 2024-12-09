@@ -1,7 +1,7 @@
 Entrega final del curso de Python de CoderHouse - Rodrigo Gasco Hernandez
 
 Descripción del proyecto:
-Este proyecto consiste en una aplicación web en la cual se pueden visualizar todas las categorias disponibles en la pagina, asi como los productos que tiene disponibles. Además tiene un registro de usuario e inicio de sesión, los cuales te permiten aceder a apartados de la pagina como Clientes(Solo usuario administrador), crear, ver, editar y eliminar(eliminar solo para el usuario administrador) tanto categorias como productos de la misma y clientes para el caso del adminisrador.
+Este proyecto consiste en una aplicación web en la cual se pueden visualizar todas las categorias disponibles en la pagina, asi como los productos que tiene disponibles. Además tiene un registro de usuario e inicio de sesión, los cuales te permiten aceder a apartados de la pagina como Clientes(Solo usuario administrador), crear, ver, editar, buscar y eliminar(eliminar solo para el usuario administrador) tanto categorias como productos de la misma y clientes para el caso del adminisrador.
 
 Usuarios con los permisos correspondientes:
 - Usuario Administrador
