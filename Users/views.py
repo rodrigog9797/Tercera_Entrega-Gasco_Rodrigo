@@ -3,7 +3,6 @@ from django.urls import reverse_lazy
 from .forms import UserRegisterForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
-from django.contrib.auth.mixins import LoginRequiredMixin
 from Users.forms import UserRegisterForm, UserEditForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

@@ -40,10 +40,12 @@ git clone "link del repositorio que deseas clonar"
 
 Además asegurate de crear un entorno virtual e instalar todo lo que contenga el archivo requirements.txt
 
-Para ello puedes utilizar estos comandos
-python -m venv venv1
-source venv1/Scripts/activate  # En Mac usa `venv\bin\activate`
-pip install -r requirements.txt
+Para ello puedes utilizar estos comandos:
+ python -m venv venv1
+ 
+ source venv1/Scripts/activate  # En Mac usa `venv\bin\activate`
+ 
+ pip install -r requirements.txt
 
 
 Espero la página sea de su agrado, a continuación les dejare un link que contiene un video explicativo de la pagina web, donde basicamente muestro todo lo indicado arriba
