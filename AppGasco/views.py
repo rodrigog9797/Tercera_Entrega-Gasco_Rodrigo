@@ -2,7 +2,6 @@ from django.shortcuts import render
 from AppGasco.models import Categoria , Cliente , Producto
 from django.http import HttpResponse
 from AppGasco.forms import CategoriaFormulario , ClienteFormulario , ProductoFormulario
-from Users.forms import UserRegisterForm
 # Create your views here.
 
 def inicio(request):

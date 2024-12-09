@@ -4,35 +4,30 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseForbidden
 
-# def login_request(request):
-#     """
-#     Función para manejar las solicitudes de inicio de sesión.
-#     """
-#     if request.method == "POST":  # Si el formulario fue enviado (método POST)
-#         form = AuthenticationForm(request, data=request.POST)  # Crea un formulario y lo llena con los datos enviados
-#         print(form)  # Imprime el formulario en la consola (para depuración)
-
-#         if form.is_valid():  # Si el formulario es válido
-#             usuario = form.cleaned_data.get("username")  # Obtiene el nombre de usuario
-#             clave = form.cleaned_data.get("password")  # Obtiene la contraseña
-
-#             nombre_usuario = authenticate(username=usuario, password=clave)  # Intenta autenticar al usuario
-
-#             if nombre_usuario is not None:  # Si la autenticación es exitosa
-#                 login(request, nombre_usuario)  # Inicia la sesión del usuario
-#                 return render(request, "AppGasco/index.html", {"mensaje":f"Has iniciado sesión. Bienvenido {usuario}"})  # Renderiza la plantilla con un mensaje de bienvenida
-#             else:  # Si la autenticación falla
-#                 form = AuthenticationForm()  # Crea un nuevo formulario vacío
-#                 return render(request, "AppGasco/login.html", {"mensaje":"Error, datos incorrectos", "form": form})  # Renderiza el formulario de login con un mensaje de error
-#         else:  # Si el formulario no es válido
-#             return render(request, "AppGasco/index.html", {"mensaje":"Error, formulario inválido"})  # Renderiza la plantilla con un mensaje de error
-
-#     form = AuthenticationForm()  # Si es una solicitud GET (primera vez que se accede a la página), crea un formulario vacío
-#     return render(request, "AppGasco/login.html", {"form":form})  # Renderiza el formulario de login
+class AdminOUsuarioComunMixin:
+    """
+    Mixin que permite el acceso a usuarios que pertenecen a los grupos
+    'Administrador' o 'Usuarios comunes'.
+    Esto lo hago para no repetir lo mismo en todas las clases, y simplemente deba agregar el argumento en aquellas clases que lo necesite
+    """
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.groups.filter(name__in=['Administrador', 'Usuarios comunes']).exists():
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
+        
+class AdminRequiredMixin:
+    """
+    Mixin que permite el acceso solo a usuarios que pertenecen al grupo 'Administrador'.
+    """
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.groups.filter(name='Administrador').exists():
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden("No tienes permiso para acceder a esta página, solo el Administrador del sitio puede hacerlo.")
 
 
 
@@ -43,7 +38,7 @@ class CategoriaListView(ListView):
     model = Categoria  # Modelo con el que trabaja esta vista
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_list.html"  # Plantilla para renderizar la lista
 
-class CategoriaDetalle(LoginRequiredMixin,DetailView):
+class CategoriaDetalle(LoginRequiredMixin,AdminOUsuarioComunMixin,DetailView):
     """
     Vista para mostrar los detalles de una categoria específica.
     """
@@ -51,7 +46,7 @@ class CategoriaDetalle(LoginRequiredMixin,DetailView):
     template_name = "appgasco/Vistas_Clase_Categoria/categoria_detalle.html"
     login_url = reverse_lazy('Login')
 
-class CategoriaCreateView(LoginRequiredMixin,CreateView):
+class CategoriaCreateView(LoginRequiredMixin,AdminOUsuarioComunMixin,CreateView):
     """
     Vista para crear nuevas categorias a través de un formulario.
     """
@@ -61,7 +56,7 @@ class CategoriaCreateView(LoginRequiredMixin,CreateView):
     fields = ["nombre_categoria", "descripcion_categoria"]  # Campos del modelo a mostrar en el formulario
     login_url = reverse_lazy('Login')
 
-class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
+class CategoriaUpdateView(LoginRequiredMixin,AdminOUsuarioComunMixin,UpdateView):
     """
     Vista para editar categorias existentes a través de un formulario
     """
@@ -71,7 +66,7 @@ class CategoriaUpdateView(LoginRequiredMixin,UpdateView):
     fields = ["nombre_categoria", "descripcion_categoria"]
     login_url = reverse_lazy('Login')
 
-class CategoriaDeleteView(LoginRequiredMixin,DeleteView):
+class CategoriaDeleteView(LoginRequiredMixin,AdminRequiredMixin,DeleteView):
     """
     Vista para eliminar categoria.
     """
@@ -87,7 +82,7 @@ class ProductoListView(ListView):
     model = Producto  # Modelo con el que trabaja esta vista
     template_name = "appgasco/Vistas_Clase_Producto/producto_list.html"  # Plantilla para renderizar la lista
 
-class ProductoDetalle(LoginRequiredMixin,DetailView):
+class ProductoDetalle(LoginRequiredMixin,AdminOUsuarioComunMixin,DetailView):
     """
     Vista para mostrar los detalles de un producto específico.
     """
@@ -95,7 +90,7 @@ class ProductoDetalle(LoginRequiredMixin,DetailView):
     template_name = "appgasco/Vistas_Clase_Producto/producto_detalle.html"
     login_url = reverse_lazy('Login')
 
-class ProductoCreateView(LoginRequiredMixin,CreateView):
+class ProductoCreateView(LoginRequiredMixin,AdminOUsuarioComunMixin,CreateView):
     """
     Vista para crear nuevos productos a través de un formulario.
     """
@@ -105,7 +100,7 @@ class ProductoCreateView(LoginRequiredMixin,CreateView):
     fields = ["nombre_producto", "descripcion_producto", "precio", "stock", "categorias"]  # Campos del modelo a mostrar en el formulario
     login_url = reverse_lazy('Login')
 
-class ProductoUpdateView(LoginRequiredMixin,UpdateView):
+class ProductoUpdateView(LoginRequiredMixin,AdminOUsuarioComunMixin,UpdateView):
     """
     Vista para editar productos existentes a través de un formulario
     """
@@ -115,7 +110,7 @@ class ProductoUpdateView(LoginRequiredMixin,UpdateView):
     fields = ["nombre_producto", "descripcion_producto", "precio", "stock", "categorias"]
     login_url = reverse_lazy('Login')
 
-class ProductoDeleteView(LoginRequiredMixin,DeleteView):
+class ProductoDeleteView(LoginRequiredMixin,AdminRequiredMixin,DeleteView):
     """
     Vista para eliminar productos.
     """
@@ -124,7 +119,7 @@ class ProductoDeleteView(LoginRequiredMixin,DeleteView):
     template_name = "appgasco/Vistas_Clase_Producto/producto_confirm_delete.html"  # Plantilla para confirmar la eliminación
     login_url = reverse_lazy('Login')
 
-class ClienteListView(LoginRequiredMixin,ListView):
+class ClienteListView(LoginRequiredMixin,AdminRequiredMixin,ListView):
     """
     Vista para mostrar una lista de todos los clientes.
     """
@@ -132,7 +127,7 @@ class ClienteListView(LoginRequiredMixin,ListView):
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_list.html"  # Plantilla para renderizar la lista
     login_url = reverse_lazy('Login')
 
-class ClienteDetalle(LoginRequiredMixin,DetailView):
+class ClienteDetalle(LoginRequiredMixin,AdminRequiredMixin,DetailView):
     """
     Vista para mostrar los detalles de un cliente específico.
     """
@@ -140,7 +135,7 @@ class ClienteDetalle(LoginRequiredMixin,DetailView):
     template_name = "appgasco/Vistas_Clase_Cliente/cliente_detalle.html"
     login_url = reverse_lazy('Login')
 
-class ClienteCreateView(LoginRequiredMixin,CreateView):
+class ClienteCreateView(LoginRequiredMixin,AdminRequiredMixin,CreateView):
     """
     Vista para crear nuevos clientes a través de un formulario.
     """
@@ -150,7 +145,7 @@ class ClienteCreateView(LoginRequiredMixin,CreateView):
     fields = ["nombre_cliente", "apellido", "email", "telefono", "direccion"]  # Campos del modelo a mostrar en el formulario
     login_url = reverse_lazy('Login')
 
-class ClienteUpdateView(LoginRequiredMixin,UpdateView):
+class ClienteUpdateView(LoginRequiredMixin,AdminRequiredMixin,UpdateView):
     """
     Vista para editar clientes existentes a través de un formulario
     """
@@ -160,7 +155,7 @@ class ClienteUpdateView(LoginRequiredMixin,UpdateView):
     fields = ["nombre_cliente", "apellido", "email", "telefono", "direccion"]
     login_url = reverse_lazy('Login')
 
-class ClienteDeleteView(LoginRequiredMixin,DeleteView):
+class ClienteDeleteView(LoginRequiredMixin,AdminRequiredMixin,DeleteView):
     """
     Vista para eliminar cliente.
     """
