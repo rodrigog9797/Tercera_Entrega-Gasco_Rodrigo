@@ -24,7 +24,7 @@ Directamente nos dirige al inicio de la pagina, sin la necesidad de ingresar man
 Link principal: http://127.0.0.1:8000/
 
 La pagina principal contiene dintintos botones en la barra de navegación que te permiten realizar todas las funcionalidades de la misma, sin la necesidad de ingresar a rutas que no esten a simple vista o con el alcance de un botón.
-- Los botones de la barra de navegación son los siguientes:
+Los botones de la barra de navegación son los siguientes:
   Tecnologias Gasco: redirige a la pagina de inicio
   Inicio: también redirige a la pagina de inicio
   Categoria: redirige a un apartado visual donde se muestran algunas categorias con imagenes y nos permite con un boton acceder a "Ver Categorias"
@@ -35,9 +35,17 @@ La pagina principal contiene dintintos botones en la barra de navegación que te
   Iniciar sesión: te redirige al inicio de sesión, una vez inicies la sesión en su lugar aparecera un texto que indique "Bienvenido y el user del usuario", además apareceran dos botones más al costado, uno que te permitirá editar el usuario (Nombre, Apellido, Correo y su contraseña), y el otro botón te permitirá cerrar la sesión
   Registrarse: te redirige a un formulario que te permitirá realizar la creación de un usuario, el cual debe obtener posteriormente los permisos del administrador para que pueda hacer uso de los permisos de Usuario común para mayor seguridad
 
-  Para poder hacer uso correspondiente de la aplicación sin tener ningún inconveniente, asgurate de clonar este repositorio en tu computadora, para ello puedes usar el siguiente comando en tu terminal:
-  git clone "link del repositorio que deseas clonar"
+Para poder hacer uso correspondiente de la aplicación sin tener ningún inconveniente, asgurate de clonar este repositorio en tu computadora, para ello puedes usar el siguiente comando en tu terminal:
+git clone "link del repositorio que deseas clonar"
 
-  Además asegurate de crear un entorno virtual e instalar todo lo que contenga el archivo requirements.txt
+Además asegurate de crear un entorno virtual e instalar todo lo que contenga el archivo requirements.txt
+
+Para ello puedes utilizar estos comandos
+python -m venv venv1
+source venv1/Scripts/activate  # En Mac usa `venv\bin\activate`
+pip install -r requirements.txt
 
 
+Espero la página sea de su agrado, a continuación les dejare un link que contiene un video explicativo de la pagina web, donde basicamente muestro todo lo indicado arriba
+
+Link del video: 
