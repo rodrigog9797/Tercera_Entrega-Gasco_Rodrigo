@@ -59,4 +59,4 @@ Para ello puedes utilizar estos comandos:
 
 Espero la página sea de su agrado, a continuación les dejare un link que contiene un video explicativo de la pagina web, donde basicamente muestro todo lo indicado arriba
 
-Link del video: 
+Link del video: https://drive.google.com/file/d/1Sdngo6U2gvI5ZxOISIZRIz-dRo8ZthxR/view?usp=drive_link
