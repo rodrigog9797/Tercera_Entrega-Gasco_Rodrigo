@@ -40,7 +40,7 @@ Los botones de la barra de navegación son los siguientes:
   
   Ver Clientes: a este apartado solo puede ingresar el usuario administrador, el cual podrá visualizar, editar, eliminar, buscar o crear nuevos clientes
   
-  Iniciar sesión: te redirige al inicio de sesión, una vez inicies la sesión en su lugar aparecera un texto que indique "Bienvenido y el user del usuario", además apareceran dos botones más al costado, uno que te permitirá editar el usuario (Nombre, Apellido, Correo y su contraseña), y el otro botón te permitirá cerrar la sesión
+  Iniciar sesión: te redirige al inicio de sesión, una vez inicies la sesión en su lugar aparecera un texto que indique "Bienvenido y el user del usuario", además apareceran dos botones más al costado, uno que te permitirá editar el usuario (Nombre, Apellido, Correo, contraseña y un avatar personalizado(para este último debe asegurarse que el formato de imagen sea .jpg)), y el otro botón te permitirá cerrar la sesión
   
   Registrarse: te redirige a un formulario que te permitirá realizar la creación de un usuario, el cual debe obtener posteriormente los permisos del administrador para que pueda hacer uso de los permisos de Usuario común para mayor seguridad
 
