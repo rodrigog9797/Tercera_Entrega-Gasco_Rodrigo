@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-
+from Users.models import Avatar
 
 
 class UserRegisterForm(UserCreationForm):
@@ -65,3 +65,8 @@ class UserEditForm(forms.ModelForm):  # Usamos ModelForm en vez de UserChangeFor
         if commit:
             user.save()
         return user
+
+class AvatarFormulario(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

@@ -5,7 +5,7 @@
 {% block main %}
 <head>
     <style>
-        /* Contenedor principal para centrar todo el contenido */
+        /* Estilos para centrar todo el contenido y formularios */
         .main-container {
             display: flex;
             flex-direction: column;
@@ -16,13 +16,11 @@
             padding: 20px;
         }
 
-        /* Títulos */
         h2, h3 {
             color: #343a40;
             margin-bottom: 20px;
         }
 
-        /* Contenedor de formularios */
         .form-container {
             background: #ffffff;
             padding: 30px 40px;
@@ -33,7 +31,6 @@
             margin-bottom: 20px;
         }
 
-        /* Botones */
         button {
             display: block;
             width: 100%;
@@ -59,7 +56,6 @@
             background-color: #e0a800;
         }
 
-        /* Input fields */
         input, select, textarea {
             width: 100%;
             padding: 10px;
@@ -76,7 +72,6 @@
             color: #495057;
         }
 
-        /* Mensajes de éxito */
         .success-message {
             background-color: #d4edda;
             color: #155724;
@@ -100,6 +95,18 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Estilos para el avatar */
+        .avatar-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-container img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
         }
     </style>
 </head>
@@ -142,6 +149,27 @@
             <button type="submit" class="btn-warning">Cambiar Contraseña</button>
         </form>
     </div>
+
+    <!-- Formulario para actualizar el avatar -->
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Actualizar Avatar</h3>
+            <div class="avatar-container">
+                {% if user.avatar and user.avatar.imagen %}
+                    <img src="{{ user.avatar.imagen.url }}" alt="Avatar Actual">
+                {% else %}
+                    <p>No tienes un avatar. Sube uno ahora.</p>
+                {% endif %}
+            </div>
+            {{ avatar_form.as_p }}
+            <input type="hidden" name="form_type" value="avatar_form">
+            <button type="submit">Actualizar Avatar</button>
+        </form>
+    </div>
+
 </div>
+
 {% endblock main %}
+
 

@@ -94,6 +94,14 @@
                             
                             {% if user.is_authenticated %}
                                 <li class="nav-item">
+                                    <!-- Mostrar imagen del avatar del usuario -->
+                                    {% if user.avatar.imagen %}
+                                        <img src="{{ user.avatar.imagen.url }}" alt="Avatar" style="height: 50px; width: 50px; border-radius: 50%;">
+                                    {% else %}
+                                        <img src="{% static 'default-avatar.png' %}" alt="Avatar predeterminado" style="height: 50px; width: 50px; border-radius: 50%;">
+                                    {% endif %}
+                                </li>
+                                <li class="nav-item">
                                     <!-- Mensaje de bienvenida -->
                                     <span class="welcome-message">Bienvenido, {{ user.username }}!</span>
                                 </li>

@@ -6,7 +6,9 @@ from django.contrib.auth import login, logout, authenticate, update_session_auth
 from Users.forms import UserRegisterForm, UserEditForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
+from Users.forms import AvatarFormulario
+from Users.models import Avatar
 
 # Create your views here.
 
@@ -54,14 +56,20 @@ def register(request):
 @login_required
 def editar_perfil(request):
     """
-    Vista para que los usuarios editen su perfil y cambien su contraseña sin cerrar la sesión.
+    Vista para que los usuarios editen su perfil, cambien su contraseña y actualicen su avatar sin cerrar la sesión.
     """
     user = request.user
     mensaje_exito = None
 
-    # Inicializar los formularios para que siempre estén disponibles
+    # Inicializar los formularios para siempre tenerlos disponibles
     form = UserEditForm(instance=user)
     password_form = PasswordChangeForm(user=user)
+    
+    # Verificar si el usuario tiene un avatar
+    if hasattr(user, 'avatar') and user.avatar:
+        avatar_form = AvatarFormulario(instance=user.avatar)
+    else:
+        avatar_form = AvatarFormulario()  # Crear un formulario vacío si no tiene avatar
 
     if request.method == 'POST':
         form_type = request.POST.get('form_type')
@@ -79,11 +87,24 @@ def editar_perfil(request):
                 update_session_auth_hash(request, password_form.user)  # Mantener la sesión activa
                 mensaje_exito = "¡Tu contraseña ha sido cambiada exitosamente!"
 
+        elif form_type == 'avatar_form':  # Procesar formulario de avatar
+            if hasattr(user, 'avatar') and user.avatar:  # Verificar si ya tiene un avatar
+                avatar_form = AvatarFormulario(request.POST, request.FILES, instance=user.avatar)
+            else:
+                avatar_form = AvatarFormulario(request.POST, request.FILES)  # Crear uno nuevo si no tiene avatar
+                avatar_form.instance.user = user  # Asegurarte de que el usuario esté asociado al avatar nuevo
+
+            if avatar_form.is_valid():
+                avatar_form.save()
+                mensaje_exito = "¡Tu avatar ha sido actualizado exitosamente!"
+
         if mensaje_exito:
             messages.success(request, mensaje_exito)
-            return redirect('EditarPerfil')
+            return redirect('EditarPerfil')  # Redirigir a la misma página para mostrar el mensaje
 
     return render(request, 'Users/editar_usuario.html', {
         'form': form,
         'password_form': password_form,
+        'avatar_form': avatar_form,  # Asegúrate de pasar el formulario del avatar
     })
+
